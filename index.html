@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMate | Smart Travel Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+
+    <div class="logo">
+        🌍 TravelMate
+    </div>
+
+    <nav>
+
+        <a href="#weather">Weather</a>
+
+        <a href="#budget">Budget</a>
+
+        <a href="#currency">Currency</a>
+
+        <a href="#places">Places</a>
+
+        <a href="#checklist">Checklist</a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="overlay">
+
+<h1>
+Plan Your Dream Trip
+</h1>
+
+<p>
+Search any destination and explore weather, maps, hotels,
+restaurants and travel budget in one place.
+</p>
+
+<div class="search-box">
+
+<input
+type="text"
+id="cityInput"
+placeholder="Enter Destination">
+
+<button id="searchBtn">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= IMAGE ================= -->
+
+<section class="destination-image">
+
+<h2>Destination</h2>
+
+<img
+id="cityImage"
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
+alt="Destination">
+
+</section>
+
+
+<!-- ================= WEATHER ================= -->
+
+<section id="weather">
+
+<h2>
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+Weather
+
+</h2>
+
+<div class="weather-card">
+
+<h1 id="temperature">
+
+--
+
+</h1>
+
+<h3 id="cityName">
+
+Search a city
+
+</h3>
+
+<p id="description">
+
+Weather Description
+
+</p>
+
+<div class="weather-grid">
+
+<div>
+
+💧
+
+<h4>
+
+Humidity
+
+</h4>
+
+<p id="humidity">
+
+--
+
+</p>
+
+</div>
+
+<div>
+
+💨
+
+<h4>
+
+Wind
+
+</h4>
+
+<p id="wind">
+
+--
+
+</p>
+
+</div>
+
+<div>
+
+🌡️
+
+<h4>
+
+Feels Like
+
+</h4>
+
+<p id="feels">
+
+--
+
+</p>
+
+</div>
+
+<div>
+
+☀️
+
+<h4>
+
+Pressure
+
+</h4>
+
+<p id="pressure">
+
+--
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= BUDGET ================= -->
+
+<section id="budget">
+
+<h2>
+
+💰 Budget Calculator
+
+</h2>
+
+<div class="budget-box">
+
+<input
+type="number"
+id="hotel"
+placeholder="Hotel Cost">
+
+<input
+type="number"
+id="food"
+placeholder="Food Cost">
+
+<input
+type="number"
+id="transport"
+placeholder="Transport">
+
+<input
+type="number"
+id="shopping"
+placeholder="Shopping">
+
+<button id="budgetBtn">
+
+Calculate Budget
+
+</button>
+
+<h2>
+
+Total :
+
+₹
+
+<span id="totalBudget">
+
+0
+
+</span>
+
+</h2>
+
+</div>
+
+</section>
+
+
+<!-- ================= CURRENCY ================= -->
+
+<section id="currency">
+
+<h2>
+
+💱 Currency Converter
+
+</h2>
+
+<div class="currency-box">
+
+<input
+type="number"
+id="amount"
+placeholder="Amount">
+
+<select id="fromCurrency">
+
+<option>USD</option>
+
+<option>INR</option>
+
+<option>EUR</option>
+
+<option>GBP</option>
+
+<option>AED</option>
+
+</select>
+
+<select id="toCurrency">
+
+<option>INR</option>
+
+<option>USD</option>
+
+<option>EUR</option>
+
+<option>GBP</option>
+
+<option>AED</option>
+
+</select>
+
+<button id="convertBtn">
+
+Convert
+
+</button>
+
+<h3 id="currencyResult">
+
+Result
+
+</h3>
+
+</div>
+
+</section>
+
+
+<!-- ================= MAP ================= -->
+
+<section id="places">
+
+<h2>
+
+🗺 Map
+
+</h2>
+
+<div id="map"></div>
+
+</section>
+
+
+<!-- ================= HOTELS ================= -->
+
+<section>
+
+<h2>
+
+🏨 Hotels
+
+</h2>
+
+<div id="hotelList"
+
+class="cards">
+
+</div>
+
+</section>
+
+
+<!-- ================= RESTAURANTS ================= -->
+
+<section>
+
+<h2>
+
+🍴 Restaurants
+
+</h2>
+
+<div id="restaurantList"
+
+class="cards">
+
+</div>
+
+</section>
+
+
+<!-- ================= CHECKLIST ================= -->
+
+<section id="checklist">
+
+<h2>
+
+📋 Packing Checklist
+
+</h2>
+
+<div class="checklist">
+
+<input
+
+type="text"
+
+id="taskInput"
+
+placeholder="Add Item">
+
+<button id="addTask">
+
+Add
+
+</button>
+
+<ul id="taskList">
+
+</ul>
+
+</div>
+
+</section>
+
+
+<footer>
+
+Made with ❤️ by Dharsan
+
+</footer>
+
+<!-- Leaflet -->
+
+<script
+src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+<script src="weather.js"></script>
+<script src="image.js"></script>
+<script src="map.js"></script>
+<script src="budget.js"></script>
+<script src="currency.js"></script>
+<script src="checklist.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
